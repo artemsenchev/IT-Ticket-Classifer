@@ -1,12 +1,12 @@
 # Ticket Classifier
 
-A machine learning-based ticket classification system that automatically categorizes support tickets using Natural Language Processing (NLP) techniques. The model achieves an **85% accuracy rate** in predicting ticket categories on the Kaggle IT Tickets Data set.
+A machine learning-based ticket classification pipeline that automatically categorizes support tickets using Natural Language Processing (NLP) techniques. The model achieves an **85% accuracy rate** in predicting ticket categories on the Kaggle IT Tickets Data set.
 
 ## 🎯 Project Overview
 
 This project implements a text classification pipeline to automatically categorize IT support tickets based on their descriptions. The system uses supervised machine learning to learn patterns from historical ticket data and predict categories for new tickets.
 
-## Business Impact
+## 💼 Business Impact
 
 ### Faster Ticket Routing
 
