@@ -16,7 +16,7 @@ This project implements a text classification pipeline to automatically categori
 ## 🔬 Scientific Methods & Approach
 
 ### 1. Data Preprocessing
-- **Text Combination**: Merges `short_description` and `description` fields for richer feature representation
+- **Text Combination**: Merges `title` and `body` fields for richer feature representation
 - **Stratified Splitting**: 80/20 train-test split maintaining class distribution
 
 ### 2. Feature Engineering
@@ -147,6 +147,12 @@ The 85% accuracy rate is validated through:
 ## 📝 License
 
 This project is available under the MIT License.
+
+## Acknowledgments
+
+- Dataset provided by [aniketg11 on Kaggle](https://www.kaggle.com/datasets/aniketg11/supportticketsclassification)
+- Built using scikit-learn machine learning library
+- Optimized for enterprise IT service management workflows
 
 ## 🤝 Contributing
 
