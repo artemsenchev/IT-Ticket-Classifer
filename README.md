@@ -8,7 +8,7 @@ This project implements a text classification pipeline to automatically categori
 
 ## 📊 Performance Metrics
 
-- **Accuracy**: 70%
+- **Accuracy**: 85%
 - **Model Type**: Multinomial Naive Bayes
 - **Vectorization**: TF-IDF (Term Frequency-Inverse Document Frequency)
 - **Cross-validation**: 5-fold stratified validation
