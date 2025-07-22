@@ -27,7 +27,6 @@ This project implements a text classification pipeline to automatically categori
 - **Cost Reduction**: Reduces labor costs associated with manual ticket triaging
 - **Improved SLA Compliance**: Faster routing leads to better service level agreement adherence
 
-
 ## 📊 Performance Metrics
 
 - **Accuracy**: 85%
@@ -38,15 +37,18 @@ This project implements a text classification pipeline to automatically categori
 ## 🔬 Scientific Methods & Approach
 
 ### 1. Data Preprocessing
+
 - **Text Combination**: Merges `title` and `body` fields for richer feature representation
 - **Stratified Splitting**: 80/20 train-test split maintaining class distribution
 
 ### 2. Feature Engineering
+
 - **Text Vectorization**: TF-IDF vectorization with English stop-word removal
 - **Feature Selection**: Configurable max_features parameter (tuned between 1,000-10,000)
 - **N-gram Analysis**: Unigram features for computational efficiency
 
 ### 3. Model Selection & Training
+
 - **Algorithm**: Multinomial Naive Bayes
   - Chosen for its effectiveness with text classification
   - Handles sparse feature matrices efficiently
@@ -56,11 +58,13 @@ This project implements a text classification pipeline to automatically categori
   - Max features: 1,000 to 10,000 features
 
 ### 4. Model Validation
+
 - **Cross-Validation**: 5-fold stratified cross-validation
 - **Performance Metrics**: Classification report including precision, recall, and F1-scores
 - **Confidence Scoring**: Prediction probabilities for uncertainty quantification
 
 ### 5. Evaluation Framework
+
 - **Train-Test Split**: Stratified sampling to maintain class distributions
 - **Confusion Matrix Analysis**: Detailed per-class performance evaluation
 - **Statistical Significance**: Minimum 10 samples per class requirement
@@ -74,12 +78,32 @@ This project implements a text classification pipeline to automatically categori
 - **Joblib**: Model serialization
 - **Matplotlib**: Visualization (word clouds)
 - **WordCloud**: Text visualization
+- **KaggleHub**: Dataset downloading
+- **OpenPyXL**: Excel file handling
+
+## 🏗️ Architecture
+
+The project follows a modular architecture with clear separation of concerns:
+
+- **`data_loader.py`**: Handles data downloading, splitting, and preprocessing
+- **`model.py`**: Contains the `TicketClassifier` class and training logic
+- **`evaluation.py`**: Evaluation metrics, reporting, and analysis tools
+- **`config.py`**: Centralized configuration management
+- **`main.py`**: Main execution pipeline
 
 ## 📁 Project Structure
 
 ```
 ticket-classifier/
-├── classifier.py           # Main classification pipeline
+├── src/                     # Source code modules
+│   ├── __init__.py         # Package initialization
+│   ├── config.py           # Configuration settings
+│   ├── data_loader.py      # Data loading and preprocessing
+│   ├── model.py            # Model training and prediction classes
+│   └── evaluation.py       # Evaluation and analysis tools
+├── main.py                 # Main execution script
+├── classifier.py           # Legacy script (deprecated)
+├── requirements.txt        # Python dependencies
 ├── naive_bayes_model.joblib # Trained model (generated)
 ├── output_with_correct.xlsx # Test results with accuracy flags
 ├── summary.xlsx            # Performance summary
@@ -91,17 +115,21 @@ ticket-classifier/
 ## 🚀 Quick Start
 
 1. **Install Dependencies**
+
    ```bash
-   pip install pandas scikit-learn numpy matplotlib wordcloud openpyxl joblib
+   pip install -r requirements.txt
    ```
 
 2. **Prepare Data**
-   - Place your ticket data in `data/all_tickets.xlsx`
-   - Ensure columns: `sys_created_on`, `category`, `short_description`, `description`
+
+   - Dataset will be automatically downloaded from Kaggle on first run
+   - Or place your ticket data in `data/all_tickets.xlsx`
+   - Ensure columns: `category`, `title`, `body`
 
 3. **Run Classification**
+
    ```bash
-   python classifier.py
+   python main.py
    ```
 
 4. **View Results**
@@ -111,15 +139,19 @@ ticket-classifier/
 ## 📈 Model Performance Analysis
 
 ### Cross-Validation Results
+
 The model undergoes rigorous 5-fold cross-validation to ensure generalizability and avoid overfitting.
 
 ### Hyperparameter Optimization
+
 Grid search optimization explores:
+
 - **Alpha values**: Controls Laplace smoothing (prevents zero probabilities)
 - **Feature counts**: Balances model complexity vs. performance
 - **Vectorization parameters**: Optimizes text representation
 
 ### Statistical Rigor
+
 - **Stratified sampling**: Maintains class distribution across train/test splits
 - **Minimum sample requirements**: Ensures statistical significance
 - **Probability scoring**: Provides confidence measures for predictions
@@ -153,6 +185,7 @@ The classification pipeline follows established machine learning best practices:
 ## 🔬 Scientific Validation
 
 The 85% accuracy rate is validated through:
+
 - **Stratified cross-validation**: Ensures results generalize across data splits
 - **Holdout testing**: Independent test set for unbiased performance estimation
 - **Statistical significance**: Minimum sample requirements prevent overfitting to small classes
@@ -165,6 +198,27 @@ The 85% accuracy rate is validated through:
 - **Active Learning**: Iterative improvement with human feedback
 - **Real-time Processing**: Streaming classification capabilities
 - **Multi-label Classification**: Support for tickets with multiple categories
+- **API Development**: REST API for real-time ticket classification
+- **Docker Containerization**: Easy deployment and scaling
+
+## 💻 Development
+
+### Using Individual Modules
+
+```python
+from src.model import TicketClassifier
+from src.data_loader import download_data, split_train_test_data
+from src.evaluation import summarize_predictions
+
+# Initialize classifier
+classifier = TicketClassifier()
+
+# Train model
+model = classifier.train(train_df, 'category', 'Combined_Text')
+
+# Make predictions
+results = classifier.predict(test_df, 'Combined_Text')
+```
 
 ## 📝 License
 
@@ -182,4 +236,4 @@ Contributions are welcome! Please feel free to submit pull requests or open issu
 
 ---
 
-*This classifier demonstrates the effective application of classical machine learning techniques to real-world text classification problems, achieving solid performance through rigorous scientific methodology.*
+_This classifier demonstrates the effective application of classical machine learning techniques to real-world text classification problems, achieving solid performance through rigorous scientific methodology._
